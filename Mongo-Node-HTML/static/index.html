@@ -1,0 +1,145 @@
+<html>
+<head>
+    <style>
+        img {
+            height: 50px;
+            width: 70px;
+        }
+
+        .red_color,
+        .err_msg {
+            color: red;
+        }
+
+        #displayRecord>tbody>tr:hover {
+            background: wheat;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="/student/create" onsubmit="return validateForm()">
+        <table>
+            <tr>
+                <th>Name&nbsp;<color class="red_color">*</color>
+                </th>
+                <td><input type="text" name="name" id="txtname" placeholder="Enter Name" />&nbsp;<label class="err_msg"
+                        id="err_name"></label></td>
+            </tr>
+            <tr>
+                <th>Contact&nbsp;<color class="red_color">*</color>
+                </th>
+                <td><input type="text" name="contact" id="txtcontact" placeholder="Enter Contact" />&nbsp;<label
+                        class="err_msg" id="err_contact"></label></td>
+            </tr>
+            <tr>
+                <th>Email&nbsp;<color class="red_color">*</color>
+                </th>
+                <td><input type="text" name="email" id="txtemail" placeholder="Enter Email Address" />&nbsp;<label
+                        class="err_msg" id="err_email"></label></td>
+            </tr>
+            <tr>
+                <th>Salary&nbsp;<color class="red_color">*</color>
+                </th>
+                <td><input type="text" name="salary" id="txtsalary" placeholder="Enter Salary" />&nbsp;<label
+                        class="err_msg" id="err_salary"></label></td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>
+                    <input type="radio" name="gender" id="male" placeholder="Select Gender" value='0' />Male
+                    <input type="radio" name="gender" id="female" placeholder="Select Gender"
+                        value='1' />Female&nbsp;<label class="err_msg" id="err_gender"></label>
+                </td>
+            </tr>
+            <tr>
+                <th>Hobbies</th>
+                <td>
+                    <input type="checkbox" name="hobbies" id="chkreading" value='Reading Books' />Reading Books<br />
+                    <input type="checkbox" name="hobbies" id="chkplaying" value='Playing Game' />Playing Game&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type='submit'  value='Submit' id="btnSubmit" />
+                    <input type='reset' name='btnreset' />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <section>
+        <table border="1" align="center" ID="displayRecord">
+            
+        </table>
+    </section>
+
+
+
+    <script type="text/javascript">
+        function validateForm() {
+            var currentArray = [];
+            var name = (document.getElementById("txtname").value).trim();
+            var contact = (document.getElementById("txtcontact").value).trim();
+            var email = (document.getElementById("txtemail").value).trim();
+            var male = document.getElementById("male").checked;
+            var female = document.getElementById("female").checked;
+            var reading = document.getElementById("chkreading").checked;
+            var playing = document.getElementById("chkplaying").checked;
+            var flag = 0;
+            //    Name Validation 
+            if (name.length == 0) {
+                document.getElementById("err_name").innerHTML = "You can't leave this empty";
+                flag = 1;
+            } else if (!name.match(/^[a-zA-Z ]{1,30}$/)) {
+                document.getElementById("err_name").innerHTML = "Name contains only alphabets";
+                flag = 1;
+            } else
+                document.getElementById("err_name").innerHTML = "";
+
+            //<!-- Age Validation -->
+            if (contact.length == 0) {
+                document.getElementById("err_contact").innerHTML = "You can't leave this empty";
+                flag = 1;
+            } else if (!contact.match(/^[0-9]{1,10}$/)) {
+                document.getElementById("err_contact").innerHTML = "Enter valid contact";
+                flag = 1;
+            } else
+                document.getElementById("err_contact").innerHTML = "";
+
+
+            //<!-- Email Validation -->
+            if (email.length == 0) {
+                document.getElementById("err_email").innerHTML = "You can't leave this empty";
+                flag = 1;
+            }
+            else if (!email.match(/^[a-z0-9]+@[a-z]+.*$/)) {
+                document.getElementById("err_email").innerHTML = "Invalid Email Address";
+                flag = 1;
+            } else
+                document.getElementById("err_email").innerHTML = "";
+
+            //<!-- Gender Validation -->
+            var gender_val = "";
+            if (male == true)
+                gender_val = "Male"
+            else if (female == true)
+                gender_val = "Female";
+
+            //<!-- Hobbies Validation -->
+            var hobby_val = "";
+            if (reading == true)
+                hobby_val += "Reading ";
+            if (playing == true)
+                hobby_val += "Playing";
+
+            if (flag == 1)
+                return false;
+            else {
+                return true;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
