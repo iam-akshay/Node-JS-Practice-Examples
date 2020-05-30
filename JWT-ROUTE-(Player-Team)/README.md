@@ -77,15 +77,3 @@ NOTEs:-
 
 3. While create a team or player you will need to set `created_by` property as `jwt` token's payload `_id`.
 
-
-{
-    "stringValue": "\"{ team_id: '5e0095f725d96e41f003ae27' }\"",
-    "kind": "ObjectId",
-    "value": {
-        "team_id": "5e0095f725d96e41f003ae27"
-    },
-    "path": "_id",
-    "reason": {},
-    "message": "Cast to ObjectId failed for value \"{ team_id: '5e0095f725d96e41f003ae27' }\" at path \"_id\" for model \"Player\"",
-    "name": "CastError"
-}
